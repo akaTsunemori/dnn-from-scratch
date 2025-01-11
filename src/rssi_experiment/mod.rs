@@ -41,7 +41,7 @@ impl Training for NeuralNetwork {
             let train_loss = loss.mse(&output, &y_train);
             let train_accuracy = error.rmse(&output, &y_train);
             let scaling_factor = 1. / output.shape()[0] as f64;
-            let output_gradient = (output - y_train.clone()).map(|&v| v * scaling_factor);
+            let output_gradient = (&output - &y_train) * scaling_factor;
             learning_rate = initial_learning_rate / (1. + decay * epoch as f64); // Learning rate step decay
             self.backward(&output_gradient, learning_rate, epoch);
             // Testing pipeline
@@ -60,7 +60,7 @@ impl Training for NeuralNetwork {
     }
 }
 
-pub fn run_rssi_experiment() {
+pub fn run_rssi_experiment(random_seed: Option<u64>) {
     // RSSI Architecture
     const INPUT_SIZE: usize = 13;
     const OUTPUT_SIZE: usize = 2;
@@ -70,7 +70,6 @@ pub fn run_rssi_experiment() {
         dataset_setup::load_rssi_dataset("assets/rssi/rssi-dataset.csv", 0.15);
     println!("RSSI dataset successfully loaded");
     // Neural Network pipeline
-    let random_seed = Some(42); // For reproducibility
     let mut neural_network = NeuralNetwork::new(random_seed);
     neural_network.add_layer(INPUT_SIZE, HIDDEN_SIZES[0], "relu");
     neural_network.add_layer(HIDDEN_SIZES[0], HIDDEN_SIZES[1], "relu");

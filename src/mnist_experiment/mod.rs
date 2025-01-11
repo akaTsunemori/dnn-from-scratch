@@ -46,7 +46,7 @@ impl Training for NeuralNetwork {
                 &true_labels.into_dyn(),
             );
             let scaling_factor = 6. / output.shape()[0] as f64;
-            let output_gradient = (output - y_train.clone()).map(|&v| v * scaling_factor);
+            let output_gradient = (&output - &y_train) * scaling_factor;
             learning_rate = initial_learning_rate / (1. + decay * epoch as f64); // Learning rate step decay
             self.backward(&output_gradient, learning_rate, epoch);
             // Testing pipeline
@@ -74,7 +74,7 @@ impl Training for NeuralNetwork {
     }
 }
 
-pub fn run_mnist_experiment() {
+pub fn run_mnist_experiment(random_seed: Option<u64>) {
     // MNIST Architecture
     const INPUT_SIZE: usize = 784;
     const OUTPUT_SIZE: usize = 10;
@@ -83,7 +83,6 @@ pub fn run_mnist_experiment() {
     let (x_train, y_train, x_test, y_test) = dataset_setup::load_mnist_dataset("assets/mnist");
     println!("MNIST dataset successfully loaded");
     // Neural Network pipeline
-    let random_seed = Some(42); // For reproducibility
     let mut neural_network = NeuralNetwork::new(random_seed);
     neural_network.add_layer(INPUT_SIZE, HIDDEN_SIZES[0], "relu");
     neural_network.add_layer(HIDDEN_SIZES[0], HIDDEN_SIZES[1], "relu");

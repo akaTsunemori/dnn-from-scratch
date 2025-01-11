@@ -5,6 +5,7 @@ mod mnist_experiment;
 mod rssi_experiment;
 
 fn main() {
-    rssi_experiment::run_rssi_experiment();
-    mnist_experiment::run_mnist_experiment();
+    let random_seed = Some(42); // For reproducibility
+    rssi_experiment::run_rssi_experiment(random_seed);
+    mnist_experiment::run_mnist_experiment(random_seed);
 }
