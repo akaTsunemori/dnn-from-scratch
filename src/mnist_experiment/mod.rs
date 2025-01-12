@@ -1,3 +1,8 @@
+//! Deep Neural Network implementation with training functionality for MNIST digit recognition
+//!
+//! This module provides the implementation for training the neural network, along with a runner for
+//! the MNIST experiment.
+
 extern crate dnn_from_scratch;
 use dnn_from_scratch::loss::Loss;
 use dnn_from_scratch::neural_network::NeuralNetwork;
@@ -8,7 +13,19 @@ use nd::Array2;
 mod dataset_setup;
 mod plot;
 
+/// Defines training behavior for the neural network.
 pub trait Training {
+    /// Trains a neural network using provided training and test data.
+    ///
+    /// # Arguments
+    ///
+    /// - `x_train` - Training input data.
+    /// - `y_train` - Training labels.
+    /// - `x_test` - Test input data.
+    /// - `y_test` - Test labels.
+    /// - `n_epochs` - Number of training epochs.
+    /// - `initial_learning_rate` - Initial learning rate for optimization.
+    /// - `decay` - Learning rate decay factor.
     fn train(
         &mut self,
         x_train: Array2<f64>,
@@ -22,6 +39,18 @@ pub trait Training {
 }
 
 impl Training for NeuralNetwork {
+    /// Implements neural network training using gradient descent with learning rate decay.
+    ///
+    /// Uses cross-entropy loss and tracks accuracy metrics during training.
+    /// Saves training history and generates performance plots.
+    ///
+    /// # Training Process
+    /// 1. Forward pass through network
+    /// 2. Loss computation and accuracy measurement
+    /// 3. Gradient calculation with batch scaling
+    /// 4. Backward pass with learning rate decay
+    /// 5. Test set evaluation
+    /// 6. Metrics reporting
     fn train(
         &mut self,
         x_train: Array2<f64>,
@@ -47,7 +76,7 @@ impl Training for NeuralNetwork {
             );
             let scaling_factor = 6. / output.shape()[0] as f64;
             let output_gradient = (&output - &y_train) * scaling_factor;
-            learning_rate = initial_learning_rate / (1. + decay * epoch as f64); // Learning rate step decay
+            learning_rate = initial_learning_rate / (1. + decay * epoch as f64); // Step decay
             self.backward(&output_gradient, learning_rate, epoch);
             // Testing pipeline
             let output = self.forward(&x_test);
@@ -74,6 +103,20 @@ impl Training for NeuralNetwork {
     }
 }
 
+/// Runs the MNIST digit recognition experiment with specified architecture.
+///
+/// # Arguments
+/// - `random_seed` - Optional seed for reproducibility
+///
+/// # Architecture
+/// - Input layer: 784 neurons (flattened 28x28 pixels).
+/// - Hidden layers: Two layers of 512 neurons with ReLU activation.
+/// - Output layer: 10 neurons with softmax activation.
+///
+/// # Hyperparameters
+/// - Epochs: 100
+/// - Initial learning rate: 0.001
+/// - Learning rate decay: 0.001
 pub fn run_mnist_experiment(random_seed: Option<u64>) {
     // MNIST Architecture
     const INPUT_SIZE: usize = 784;
