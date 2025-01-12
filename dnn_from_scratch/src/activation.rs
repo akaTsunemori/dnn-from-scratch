@@ -1,16 +1,41 @@
+//! # Activation Module
+//!
+//! This module provides a structure and functionality to handle activation functions commonly used
+//! in neural networks. It supports the following activation types:
+//!
+//! - **ReLU (Rectified Linear Unit)**: Used to introduce non-linearity by outputting the input
+//! directly if it is positive; otherwise, it outputs zero.
+//! - **Softmax**: Converts a vector of real numbers into a probability distribution, typically
+//! used in the output layer for multi-class classification problems.
+//! - **None**: A pass-through activation that does not modify the input or output.
+
 use nd::{Array2, Axis};
 
+/// Enum representing supported activation types.
 enum ActivationType {
+    /// Softmax activation function.
     Softmax,
+    /// ReLU activation function.
     ReLU,
+    /// No activation function (pass-through).
     None,
 }
 
+/// The `Activation` structure manages activation functions and their forward
+/// and backward passes.
 pub struct Activation {
     activation_type: ActivationType,
 }
 
 impl Activation {
+    /// Creates a new `Activation` instance based on the specified type.
+    ///
+    /// # Arguments
+    /// - `activation_type`: A string specifying the type of activation.
+    ///   Supported values are `"relu"`, `"softmax"`, and `"none"`.
+    ///
+    /// # Panics
+    /// This function will panic if an invalid activation type is provided.
     pub fn new(activation_type: &str) -> Activation {
         let activation_type = match activation_type {
             "relu" => ActivationType::ReLU,
@@ -21,6 +46,13 @@ impl Activation {
         Activation { activation_type }
     }
 
+    /// Performs the forward pass of the activation function on the input array.
+    ///
+    /// # Arguments
+    /// - `z`: A 2D array (`Array2<f64>`) containing the input data.
+    ///
+    /// # Returns
+    /// A 2D array with the activation function applied element-wise (ReLU) or row-wise (Softmax).
     pub fn forward(&self, mut z: Array2<f64>) -> Array2<f64> {
         match self.activation_type {
             ActivationType::ReLU => z.mapv(|v| v.max(0.)),
@@ -40,6 +72,15 @@ impl Activation {
         }
     }
 
+    /// Performs the backward pass (gradient calculation) of the activation function.
+    ///
+    /// # Arguments
+    /// - `d_values`: A 2D array containing gradients propagated from the subsequent layer.
+    /// - `z`: A 2D array containing the output of the forward pass (or the input to the activation
+    /// function).
+    ///
+    /// # Returns
+    /// A 2D array with gradients adjusted based on the activation function.
     pub fn backward(&self, d_values: &Array2<f64>, z: &Array2<f64>) -> Array2<f64> {
         let mut d_values = d_values.clone();
         match self.activation_type {

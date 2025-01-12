@@ -1,3 +1,8 @@
+//! This module generates and saves a Cumulative Distribution Function (CDF) plot of distance errors.
+//!
+//! The plot is created using the `charming` library and includes features to highlight the point
+//! where the cumulative probability reaches 90%. The resulting plot is saved as a PNG image.
+
 use charming::component::{Axis, Grid, Legend, Title};
 use charming::datatype::{CompositeValue, NumericValue};
 use charming::element::{
@@ -7,6 +12,26 @@ use charming::element::{
 use charming::series::Line;
 use charming::{Chart, ImageFormat, ImageRenderer};
 
+/// Generates a CDF plot from sorted error values and their corresponding cumulative probabilities.
+///
+/// # Arguments
+/// - `sorted_errors`: A vector of sorted distance error values.
+/// - `cdf`: A vector of cumulative probabilities corresponding to the sorted errors.
+/// - `output_path`: The file path where the resulting PNG image will be saved.
+///
+/// # Functionality
+/// - The x-axis represents the sorted distance errors.
+/// - The y-axis represents the cumulative probability (range: 0.0 to 1.0).
+/// - A vertical and horizontal mark line is added at the point where the cumulative probability
+///   reaches 90% to highlight this key metric.
+///
+/// # Output
+/// The resulting plot is saved as a PNG image at the specified `output_path`.
+///
+/// # Panics
+/// - This function will panic if:
+///   - The `charming` library fails to render or save the image.
+///   - The output path is invalid or unwritable.
 pub fn plot_cdf(sorted_errors: Vec<f64>, cdf: Vec<f64>, output_path: &str) {
     let line_data: Vec<CompositeValue> = sorted_errors
         .clone()
