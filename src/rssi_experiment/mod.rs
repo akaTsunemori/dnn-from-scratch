@@ -73,6 +73,6 @@ pub fn run_rssi_experiment(random_seed: Option<u64>) {
     let mut neural_network = NeuralNetwork::new(random_seed);
     neural_network.add_layer(INPUT_SIZE, HIDDEN_SIZES[0], "relu");
     neural_network.add_layer(HIDDEN_SIZES[0], HIDDEN_SIZES[1], "relu");
-    neural_network.add_layer(HIDDEN_SIZES[1], OUTPUT_SIZE, "relu");
+    neural_network.add_layer(HIDDEN_SIZES[1], OUTPUT_SIZE, "none");
     neural_network.train(x_train, y_train, x_test, y_test, 2500, 0.0005, 0.00001);
 }
