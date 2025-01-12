@@ -1,4 +1,4 @@
-//! Deep Neural Network implementation for RSSI-based location prediction
+//! # Deep Neural Network usage for RSSI-based location prediction
 //!
 //! This module provides training functionality for regression neural networks, specifically applied
 //! to RSSI-based indoor positioning.

@@ -1,4 +1,4 @@
-//! # FullyConnected Module
+//! # Fully-Connected Module
 //!
 //! This module defines a fully-connected (dense) layer for neural networks, providing
 //! functionality for forward propagation, backpropagation, and parameter updates. It integrates

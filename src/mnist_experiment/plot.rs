@@ -1,4 +1,4 @@
-//! MNIST Experiment Plotting
+//! # MNIST Experiment Plotting
 //!
 //! This module provides functionality for generating and saving a line plot to visualize the training
 //! and validation accuracy over a specified number of epochs.

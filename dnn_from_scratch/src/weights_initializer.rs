@@ -1,4 +1,4 @@
-//! # WeightsInitializer Module
+//! # Weights Initializer Module
 //!
 //! This module defines the `WeightsInitializer` structure and a method for initializing weights in
 //! a neural network model. Proper weight initialization is essential for faster convergence during

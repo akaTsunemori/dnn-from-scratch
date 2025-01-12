@@ -1,4 +1,4 @@
-//! # NeuralNetwork Module
+//! # Neural Network Module
 //!
 //! This module defines the structure and functionality of a simple feedforward neural network. The
 //! network supports adding layers, performing forward and backward propagation, and using various

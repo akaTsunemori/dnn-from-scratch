@@ -1,4 +1,4 @@
-//! Deep Neural Network implementation with training functionality for MNIST digit recognition
+//! # Deep Neural Network usage for MNIST digit recognition
 //!
 //! This module provides the implementation for training the neural network, along with a runner for
 //! the MNIST experiment.

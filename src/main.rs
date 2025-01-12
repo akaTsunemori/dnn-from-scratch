@@ -1,6 +1,6 @@
-//! DNN From Scratch Experiments
+//! # DNN From Scratch - Experiments
 //!
-//! This file serves as the entry point for running two experiments:
+//! The entry point for running two experiments:
 //! - **RSSI Experiment**: A regression experiment that maps Received Signal Strength Indicator (RSSI)
 //! to geographical coordinates (X, Y).
 //! - **MNIST Experiment**: A classification experiment that involves the MNIST dataset, focusing on
