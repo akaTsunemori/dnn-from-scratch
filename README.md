@@ -123,7 +123,43 @@ Each experiment generates reports and plots showcasing:
 - Training history.
 - Model performance metrics (e.g., accuracy for MNIST, CDF of RMSE for RSSI).
 
-Plots and reports are stored in the in the output/ folder.
+Plots and reports are saved in the `output/` folder. You can check a preview of the expected results below by clicking to reveal the contents.
+
+<details>
+    <summary><b>MNIST Experiment</b></summary>
+<br>
+
+Preview of training history:
+
+```
+Epoch 1/100 | Train: Loss 2.06653167, Accuracy 0.10133333 | Test: Loss 1.95600680, Accuracy 0.37100000
+(...)
+Epoch 100/100 | Train: Loss 0.13694486, Accuracy 0.96098333 | Test: Loss 0.15178871, Accuracy 0.95190000
+```
+
+Output plot:
+
+![](static/mnist_experiment_plot.png)
+
+</details>
+
+<details>
+    <summary><b>RSSI Experiment</b></summary>
+<br>
+
+Preview of training history:
+
+```
+Epoch 1/2500 | Train: Loss 18046.39994821, Error 134.33688975 | Test: Loss 21310.27160128, Error 145.98038088
+(...)
+Epoch 2500/2500 | Train: Loss 5.56953465, Error 2.35998615 | Test: Loss 5.85785166, Error 2.42029991
+```
+
+Output plot:
+
+![](static/rssi_experiment_cdf.png)
+
+</details>
 
 ---
 
