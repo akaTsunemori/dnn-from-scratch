@@ -1,3 +1,5 @@
+//! RRSI Experiment Plotting
+//!
 //! This module generates and saves a Cumulative Distribution Function (CDF) plot of distance errors.
 //!
 //! The plot is created using the `charming` library and includes features to highlight the point

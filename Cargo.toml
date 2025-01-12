@@ -1,7 +1,10 @@
 [package]
-name = "dnn-from-scratch"
+name = "dnn_from_scratch_experiments"
 version = "0.1.0"
 edition = "2021"
+
+[workspace]
+members = ["dnn_from_scratch"]
 
 [dependencies]
 dnn_from_scratch = { path = "dnn_from_scratch" }

@@ -1,3 +1,5 @@
+//! # RSSI Dataset Setup
+//!
 //! This module provides functionality for loading and preprocessing an RSSI
 //! (Received Signal Strength Indicator) dataset.
 //!

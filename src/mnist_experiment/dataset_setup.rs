@@ -1,3 +1,5 @@
+//! # MNIST Dataset Setup
+//!
 //! This module provides utilities for loading and preprocessing the MNIST dataset stored in `.npy` format.
 //!
 //! The module includes functions for reading `.npy` files, converting and reshaping arrays, normalizing
