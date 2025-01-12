@@ -1,22 +1,7 @@
 use crate::activation::Activation;
+use crate::optimizer::Optimizer;
+use crate::weights_initializer::WeightsInitializer;
 use ndarray::{Array1, Array2, Axis};
-use rand::{self, rngs::StdRng, thread_rng, RngCore, SeedableRng};
-use rand_distr::{Distribution, Normal};
-
-/// Generate weights following the HE-Initialization method
-fn generate_weights(
-    input_size: usize,
-    output_size: usize,
-    random_seed: Option<u64>,
-) -> Array2<f64> {
-    let scale = (2. / input_size as f64).sqrt();
-    let normal = Normal::new(0., scale).unwrap();
-    let mut rng: Box<dyn RngCore> = match random_seed {
-        Some(seed_value) => Box::new(StdRng::seed_from_u64(seed_value)),
-        None => Box::new(thread_rng()),
-    };
-    Array2::from_shape_fn((input_size, output_size), |_| normal.sample(&mut rng))
-}
 
 pub struct FullyConnected {
     // Weights and biases
@@ -24,15 +9,8 @@ pub struct FullyConnected {
     biases: Array1<f64>,
     // Activation-related
     activation: Activation,
-    // Optimizer-related (Adam)
-    m_weights: Array2<f64>,
-    v_weights: Array2<f64>,
-    m_biases: Array1<f64>,
-    v_biases: Array1<f64>,
-    // Hyper-parameters (Adam)
-    beta_1: f64,
-    beta_2: f64,
-    epsilon: f64,
+    // Optimizer-related
+    optimizer: Optimizer,
     // Input and Output (for the forward pass)
     input: Array2<f64>,
     output: Array2<f64>,
@@ -46,17 +24,12 @@ impl FullyConnected {
         activation: Activation,
         random_seed: Option<u64>,
     ) -> FullyConnected {
+        let optimizer = Optimizer::new(input_size, output_size, "adam", None, None, None);
         FullyConnected {
-            weights: generate_weights(input_size, output_size, random_seed),
+            weights: WeightsInitializer::he_initialization(input_size, output_size, random_seed),
             biases: Array1::zeros(output_size),
             activation,
-            m_weights: Array2::zeros((input_size, output_size)),
-            v_weights: Array2::zeros((input_size, output_size)),
-            m_biases: Array1::zeros(output_size),
-            v_biases: Array1::zeros(output_size),
-            beta_1: 0.9,
-            beta_2: 0.999,
-            epsilon: 1e-8,
+            optimizer,
             input: Array2::zeros((1, 1)),
             output: Array2::zeros((1, 1)),
         }
@@ -86,26 +59,15 @@ impl FullyConnected {
         let d_biases_clipped = d_biases.mapv(|x| x.max(-1.).min(1.));
         // Calculate gradient with respect to the input
         let d_inputs = d_values.dot(&self.weights.t());
-        // Update weights and biases using gradient descent
-        self.weights -= &(&d_weights_clipped * learning_rate);
-        self.biases -= &(&d_biases_clipped * learning_rate);
-        // Adam optimizer for weights
-        self.m_weights =
-            &(&self.m_weights * self.beta_1) + &(&d_weights_clipped * (1. - self.beta_1));
-        self.v_weights = &(&self.v_weights * self.beta_2)
-            + &(&d_weights_clipped.mapv(|x| x * x) * (1. - self.beta_2));
-        let m_hat_weights = &self.m_weights / (1. - self.beta_1.powi(t as i32));
-        let v_hat_weights = &self.v_weights / (1. - self.beta_2.powi(t as i32));
-        self.weights -=
-            &(learning_rate * &m_hat_weights / &v_hat_weights.mapv(|x| x.sqrt() + self.epsilon));
-        // Adam optimizer for biases
-        self.m_biases = &(&self.m_biases * self.beta_1) + &(&d_biases_clipped * (1. - self.beta_1));
-        self.v_biases = &(&self.v_biases * self.beta_2)
-            + &(&d_biases_clipped.mapv(|x| x * x) * (1. - self.beta_2));
-        let m_hat_biases = &self.m_biases / (1. - self.beta_1.powi(t as i32));
-        let v_hat_biases = &self.v_biases / (1. - self.beta_2.powi(t as i32));
-        self.biases -=
-            &(learning_rate * &m_hat_biases / &v_hat_biases.mapv(|x| x.sqrt() + self.epsilon));
+        // Update weights and biases using the optimizer
+        self.optimizer.update(
+            &mut self.weights,
+            &mut self.biases,
+            &d_weights_clipped,
+            &d_biases_clipped,
+            learning_rate,
+            t,
+        );
         d_inputs
     }
 }
