@@ -19,6 +19,7 @@ This repository implements a deep neural network (DNN) from scratch in Rust, foc
 
 ```
 dnn-from-scratch/
+├── README.md                # Project overview and instructions
 ├── Cargo.toml               # Project dependencies and configuration
 ├── LICENSE                  # License information
 ├── assets/                  # Datasets and auxiliary data
@@ -37,18 +38,20 @@ dnn-from-scratch/
 │       ├── lib.rs           # Entry point for the library
 │       ├── loss.rs          # Loss functions
 │       ├── neural_network.rs # Neural network definition
+│       ├── optimizer.rs     # Optimizer implementations (e.g., Adam)
 │       ├── report.rs        # Reporting and result output
-│       └── utils.rs         # Utility for regression/classification
+│       ├── utils.rs         # Utility functions for regression/classification
+│       └── weights_initializer.rs # Weight initialization strategies
 └── src/                     # Main application for experiments
     ├── main.rs              # Entry point for the executable
-    ├── mnist_experiment/    # MNIST-related modules
+    ├── mnist_experiment/    # MNIST Experiment-related modules
     │   ├── dataset_setup.rs # MNIST dataset preprocessing
-    │   ├── mod.rs           # MNIST module entry point
-    │   └── plot.rs          # Plotting results for MNIST
-    └── rssi_experiment/     # RSSI-related modules
+    │   ├── mod.rs           # MNIST Experiment module entry point
+    │   └── plot.rs          # Plotting results for MNIST Experiment
+    └── rssi_experiment/     # RSSI Experiment-related modules
         ├── dataset_setup.rs # RSSI dataset preprocessing
-        ├── mod.rs           # RSSI module entry point
-        └── plot.rs          # Plotting results for RSSI
+        ├── mod.rs           # RSSI Experiment module entry point
+        └── plot.rs          # Plotting results for RSSI Experiment
 ```
 
 ---
