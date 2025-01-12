@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["load_rssi_dataset","min_max_scale"]};

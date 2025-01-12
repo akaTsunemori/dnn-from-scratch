@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["load_mnist_dataset","normalize_images","process_images","read_mnist_npy","to_array3","to_categorical"]};

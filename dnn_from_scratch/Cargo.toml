@@ -1,9 +1,0 @@
-[package]
-name = "dnn_from_scratch"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-rand = "0.8.5"
-rand_distr = "0.4.3"
-ndarray = {version = "0.16.1", features = ["matrixmultiply-threading"]}
