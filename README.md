@@ -72,10 +72,36 @@ cd dnn-from-scratch
 
 ### Building the Project
 
-To build the project, run: `cargo build --release`.
+To build the project, run:
+
+```bash
+cargo build --release
+```
 
 ### Running Experiments
-To run the experiments, run: `cargo run --release`.
+To run the experiments, run:
+
+```bash
+cargo run --release
+```
+
+
+---
+
+## 📚 Documentation
+
+Complete API documentation for this project is available at [https://akatsunemori.github.io/dnn-from-scratch/](https://akatsunemori.github.io/dnn-from-scratch/).
+
+The documentation includes:
+- Detailed API references for all modules
+- Implementation details of neural network components
+- Technical explanations
+
+You can also generate the documentation locally by running:
+
+```bash
+cargo doc --release --workspace --no-deps --target-dir=docs
+```
 
 ---
 
