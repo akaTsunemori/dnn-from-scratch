@@ -90,7 +90,7 @@ cargo run --release
 
 ## 📚 Documentation
 
-Complete API documentation for this project is available at [https://akatsunemori.github.io/dnn-from-scratch/](https://akatsunemori.github.io/dnn-from-scratch/).
+Complete API documentation for this project is available at [https://arthurhscarvalho.github.io/dnn-from-scratch/](https://arthurhscarvalho.github.io/dnn-from-scratch/).
 
 The documentation includes:
 - Detailed API references for all modules
