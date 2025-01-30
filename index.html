@@ -1,17 +1,367 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content="rustdoc" />
+        <meta
+            name="description"
+            content="API documentation for the Rust `home_page` crate."
+        />
+        <title>home_page - Rust</title>
+        <script>
+            if (window.location.protocol !== "file:")
+                document.head.insertAdjacentHTML(
+                    "beforeend",
+                    "SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2"
+                        .split(",")
+                        .map(
+                            (f) =>
+                                `<link rel="preload" as="font" type="font/woff2" crossorigin href="./static.files/${f}">`,
+                        )
+                        .join(""),
+                );
+        </script>
+        <link rel="stylesheet" href="./static.files/normalize-9960930a.css" />
+        <link rel="stylesheet" href="./static.files/rustdoc-faa87aeb.css" />
+        <meta
+            name="rustdoc-vars"
+            data-root-path="./"
+            data-static-root-path="./static.files/"
+            data-current-crate="home_page"
+            data-themes=""
+            data-resource-suffix=""
+            data-rustdoc-version="1.86.0-nightly (f7cc13af8 2025-01-25)"
+            data-channel="nightly"
+            data-search-js="search-ccb196c1.js"
+            data-settings-js="settings-0f613d39.js"
+        />
+        <script src="./static.files/storage-59e33391.js"></script>
+        <script defer src="./crates.js"></script>
+        <script defer src="./static.files/main-5f194d8c.js"></script>
+        <noscript
+            ><link rel="stylesheet" href="./static.files/noscript-893ab5e7.css"
+        /></noscript>
+        <link
+            rel="alternate icon"
+            type="image/png"
+            href="./static.files/favicon-32x32-6580c154.png"
+        />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="./static.files/favicon-044be391.svg"
+        />
+    </head>
+    <body class="rustdoc mod crate">
+        <!--[if lte IE 11
+            ]><div class="warning">
+                This old browser is unsupported and will most likely display
+                funky things.
+            </div><!
+        [endif]-->
+        <nav class="mobile-topbar">
+            <button class="sidebar-menu-toggle" title="show sidebar"></button>
+        </nav>
+        <nav class="sidebar">
+            <div class="sidebar-crate">
+                <h2>
+                    <a href="./home_page/index.html">home_<wbr />page</a
+                    ><span class="version">0.1.0</span>
+                </h2>
+            </div>
+            <div class="sidebar-elems">
+                <ul class="block">
+                    <li><a id="all-types" href="all.html">All Items</a></li>
+                </ul>
+                <div id="rustdoc-modnav"></div>
+            </div>
+        </nav>
+        <div class="sidebar-resizer"></div>
+        <main>
+            <div class="width-limiter">
+                <rustdoc-search></rustdoc-search>
+                <section id="main-content" class="content">
+                    <div class="main-heading">
+                        <h1>
+                            Project <a class="mod" href="#">DNN From Scratch</a
+                            ><button
+                                id="copy-path"
+                                title="Copy item path to clipboard"
+                            >
+                                Copy item path
+                            </button>
+                        </h1>
+                        <span class="out-of-band"
+                            ><a
+                                class="src"
+                                href="https://github.com/arthurhscarvalho/dnn-from-scratch"
+                                >source</a
+                            ></span
+                        >
+                    </div>
+                    <div class="docblock">
+                        <p>
+                            This project implements a deep neural network (DNN)
+                            from scratch in Rust, focusing on two key
+                            experiments: image classification with the MNIST
+                            dataset and signal strength-based predictions using
+                            an RSSI dataset. The project demonstrates building
+                            and training a neural network without relying on
+                            external machine learning libraries.
+                        </p>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
-    <script type="text/javascript">
-        window.location.href = "dnn_from_scratch/index.html";
-    </script>
-</head>
+                        <h2 id="features">
+                            <a class="doc-anchor" href="#features">§</a> 🚀
+                            Features
+                        </h2>
+                        <ul>
+                            <li>
+                                <strong
+                                    >Custom Neural Network
+                                    Implementation:</strong
+                                >
+                                Build and train DNNs using only Rust libraries
+                                and custom modules.
+                            </li>
+                            <li>
+                                <strong>Examples for Two Experiments:</strong>
+                            </li>
+                            <ul>
+                                <li>
+                                    MNIST Dataset: Handwritten digit
+                                    classification.
+                                </li>
+                                <li>
+                                    RSSI Dataset: Analysis and predictions based
+                                    on signal strength data.
+                                </li>
+                            </ul>
+                            <li>
+                                <strong>Modular Codebase:</strong> Cleanly
+                                separated concerns such as activation functions,
+                                loss computation, and neural network
+                                architecture.
+                            </li>
+                            <li>
+                                <strong>Visualization:</strong> Generate reports
+                                and plots to visualize experiment results.
+                            </li>
+                        </ul>
 
-<body>
-    <p>If you are not redirected, <a href="dnn_from_scratch/index.html">click here</a>.</p>
-</body>
+                        <h2 id="dir-structure">
+                            <a class="doc-anchor" href="#dir-structure">§</a> 📂
+                            Directory Structure
+                        </h2>
+                        <pre>
+<code>dnn-from-scratch/
+├── README.md                # Project overview and instructions
+├── Cargo.toml               # Project dependencies and configuration
+├── LICENSE                  # License information
+├── assets/                  # Datasets and auxiliary data
+│   ├── mnist/
+│   │   ├── x_test.npy       # MNIST test images
+│   │   ├── x_train.npy      # MNIST training images
+│   │   ├── y_test.npy       # MNIST test labels
+│   │   └── y_train.npy      # MNIST training labels
+│   └── rssi/
+│       └── rssi-dataset.csv # RSSI dataset
+├── dnn_from_scratch/        # Core library for the neural network
+│   ├── Cargo.toml           # Library-specific dependencies
+│   └── src/
+│       ├── activation.rs    # Activation functions
+│       ├── fully_connected.rs # Fully connected layer module
+│       ├── lib.rs           # Entry point for the library
+│       ├── loss.rs          # Loss functions
+│       ├── neural_network.rs # Neural network definition
+│       ├── optimizer.rs     # Optimizer implementations (e.g., Adam)
+│       ├── report.rs        # Reporting and result output
+│       ├── utils.rs         # Utility functions for regression/classification
+│       └── weights_initializer.rs # Weight initialization strategies
+└── src/                     # Main application for experiments
+    ├── main.rs              # Entry point for the executable
+    ├── mnist_experiment/    # MNIST Experiment-related modules
+    │   ├── dataset_setup.rs # MNIST dataset preprocessing
+    │   ├── mod.rs           # MNIST Experiment module entry point
+    │   └── plot.rs          # Plotting results for MNIST Experiment
+    └── rssi_experiment/     # RSSI Experiment-related modules
+        ├── dataset_setup.rs # RSSI dataset preprocessing
+        ├── mod.rs           # RSSI Experiment module entry point
+        └── plot.rs          # Plotting results for RSSI Experiment</code></pre>
 
+                        <h2 id="getting-started">
+                            <a class="doc-anchor" href="#getting-started">§</a>
+                            🛠️ Getting Started
+                        </h2>
+                        <p>
+                            To build and run the experiments, follow these
+                            steps:
+                        </p>
+                        <h4>Prerequisites</h4>
+                        <ul>
+                            <li>
+                                Install Rust:
+                                <a href="https://www.rust-lang.org/"
+                                    >rust-lang.org</a
+                                >
+                            </li>
+                        </ul>
+                        <h4>Clone the Repository</h4>
+                        <pre><code>git clone https://github.com/akaTsunemori/dnn-from-scratch.git
+    cd dnn-from-scratch</code></pre>
+                        <h4>Build the Project</h4>
+                        <pre><code>cargo build --release</code></pre>
+                        <h4>Run Experiments</h4>
+                        <pre><code>cargo run --release</code></pre>
+
+                        <h2 id="documentation">
+                            <a class="doc-anchor" href="#documentation">§</a> 📚
+                            Documentation
+                        </h2>
+                        <p>
+                            View detailed API documentation at
+                            <a
+                                href="https://arthurhscarvalho.github.io/dnn-from-scratch/"
+                                >this page</a
+                            >, or generate it locally:
+                        </p>
+                        <pre><code>cargo doc --release --workspace --no-deps --target-dir=docs</code></pre>
+
+                        <h2 id="datasets">
+                            <a class="doc-anchor" href="#datasets">§</a> 🧪
+                            Datasets
+                        </h2>
+                        <p></p>
+                        <ol>
+                            <li>
+                                <strong>MNIST Dataset:</strong>
+                                <ul>
+                                    <li>
+                                        Stored in <code>assets/mnist/</code>.
+                                    </li>
+                                    <li>
+                                        Preprocessed as <code>.npy</code> files
+                                        for seamless integration.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>RSSI Dataset:</strong>
+                                <ul>
+                                    <li>
+                                        Found in
+                                        <code>assets/rssi/rssi-dataset.csv</code
+                                        >.
+                                    </li>
+                                    <li>
+                                        Contains signal strength data and
+                                        coordinates (X, Y) for analysis.
+                                    </li>
+                                </ul>
+                            </li>
+                        </ol>
+
+                        <h2 id="license">
+                            <a class="doc-anchor" href="#license">§</a> 📈
+                            Results & Reporting
+                        </h2>
+                        <p></p>
+                        <p>
+                            Each experiment generates reports and plots
+                            showcasing:
+                        </p>
+                        <ul>
+                            <li>Training history.</li>
+                            <li>
+                                Model performance metrics (e.g., accuracy for
+                                MNIST, CDF of RMSE for RSSI).
+                            </li>
+                        </ul>
+                        <p>
+                            Plots and reports are saved in the
+                            <code>output/</code> folder. You can check a preview
+                            of the expected results below by clicking to reveal
+                            the contents.
+                        </p>
+                        <details>
+                            <summary><b>MNIST Experiment</b></summary>
+                            <br />
+                            <p>Preview of training history:</p>
+                            <pre><code>Epoch 1/100 | Train: Loss 2.0665, Accuracy 0.1013 | Test: Loss 1.9560, Accuracy 0.3710
+(...)
+Epoch 100/100 | Train: Loss 0.1369, Accuracy 0.9609 | Test: Loss 0.1517, Accuracy 0.9519</code></pre>
+
+                            <p>Output plot:</p>
+                            <img
+                                src="static/mnist_experiment_plot.png"
+                                alt="MNIST Experiment Plot"
+                            />
+                        </details>
+                        <details>
+                            <summary><b>RSSI Experiment</b></summary>
+                            <br />
+                            <p>Preview of training history:</p>
+                            <pre><code>Epoch 1/2500 | Train: Loss 18046.3999, Error 134.3368 | Test: Loss 21310.2716, Error 145.9803
+(...)
+Epoch 2500/2500 | Train: Loss 5.5695, Error 2.3599 | Test: Loss 5.8578, Error 2.4202</code></pre>
+
+                            <p>Output plot:</p>
+                            <img
+                                src="static/rssi_experiment_cdf.png"
+                                alt="RSSI Experiment Plot"
+                            />
+                        </details>
+
+                        <h2 id="license">
+                            <a class="doc-anchor" href="#license">§</a> 📜
+                            License
+                        </h2>
+                        <p>
+                            Licensed under the
+                            <a href="./LICENSE">MIT License</a>.
+                        </p>
+
+                        <h2 id="contributing">
+                            <a class="doc-anchor" href="#contributing">§</a> 🤝
+                            Contributing
+                        </h2>
+                        <p>
+                            Contributions are welcome! Feel free to fork the
+                            repository and submit a pull request.
+                        </p>
+                        <ol>
+                            <li>Fork the repo.</li>
+                            <li>
+                                Create a new branch (<code
+                                    >git checkout -b feature-name</code
+                                >).
+                            </li>
+                            <li>
+                                Commit your changes (<code
+                                    >git commit -m "Add feature"</code
+                                >).
+                            </li>
+                            <li>
+                                Push to the branch (<code
+                                    >git push origin feature-name</code
+                                >).
+                            </li>
+                            <li>Open a pull request.</li>
+                        </ol>
+
+                        <h2 id="contact">
+                            <a class="doc-anchor" href="#contact">§</a> 📧
+                            Contact
+                        </h2>
+                        <p>Create an issue for any inquiries or support.</p>
+
+                        <h2><a class="doc-anchor"></a></h2>
+                        <p>
+                            Enjoy building your neural networks from scratch! 🎉
+                        </p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </body>
 </html>
